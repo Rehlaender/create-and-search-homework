@@ -43,7 +43,11 @@ class ShowUsers extends Component
 
     function searchUser()
     {
-        $this->foundProfiles = Profile::where('name', 'LIKE', '%' . $this->search_query . '%')->orWhere('last_name', 'LIKE', '%' . $this->search_query . '%')->get();
+        // Don't know why it's needed, but will find out later
+        \DB::statement("SET SQL_MODE=''");
+        // https://stackoverflow.com/questions/40917189/laravel-syntax-error-or-access-violation-1055-error
+        $this->foundProfiles = Profile::search($this->search_query, null, true)->get();
+        
     }
 
     function toggleIsCreating($value)
