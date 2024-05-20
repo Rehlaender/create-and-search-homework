@@ -50,7 +50,7 @@
         <br>
         <div style="height: 300px; overflow: scroll">
             @if ($foundProfiles->isEmpty())
-                <p>no profiles here</p>
+                <p>found no one</p>
             @else
                 <table class="awesome-table table-auto">
                     <thead>

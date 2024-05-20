@@ -43,11 +43,13 @@ class ShowUsers extends Component
 
     function searchUser()
     {
-        // Don't know why it's needed, but will find out later
-        \DB::statement("SET SQL_MODE=''");
-        // https://stackoverflow.com/questions/40917189/laravel-syntax-error-or-access-violation-1055-error
-        $this->foundProfiles = Profile::search($this->search_query, null, true)->get();
-        
+        if($this->search_query != "") {
+            // Don't know why it's needed, but will find out later
+            \DB::statement("SET SQL_MODE=''");
+            // https://stackoverflow.com/questions/40917189/laravel-syntax-error-or-access-violation-1055-error
+            $this->foundProfiles = Profile::search($this->search_query, null, true)->get();
+            $this->search_query = "";
+        }
     }
 
     function toggleIsCreating($value)
@@ -55,6 +57,8 @@ class ShowUsers extends Component
         $this->isCreating = $value;
         if ($value) {
             $this->render_profiles = $this->profiles;
+            $this->foundProfiles = Profile::where('id', 'LIKE', 0)->get();
+            $this->search_query = "";
         } else {
             $this->render_profiles = $this->foundProfiles;
         }
