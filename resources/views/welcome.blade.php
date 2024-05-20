@@ -14,8 +14,8 @@
     <style>
         html,
         body {
-            background-color: #fff;
-            color: #636b6f;
+            background-color: black;
+            color: white;
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
             height: 100vh;
@@ -62,6 +62,37 @@
 
         .m-b-md {
             margin-bottom: 30px;
+        }
+        .show-users {
+            width: 500px;
+        }
+        input {
+            width: 100px;
+        }
+        button {
+            padding: 5px;
+            border-radius: 10px;
+            background: white;
+        }
+        button.submit {
+            background: tomato;
+            color: white;
+        }
+        button:hover {
+            opacity: 0.5;
+        }
+        button.active {
+            background: cyan;
+            color: black;
+        }
+        .awesome-table {
+            width: 100%;
+            overflow: scroll;
+            border: 1px solid white;
+        }
+        .awesome-table th {
+            background: gray;
+            color: white;
         }
     </style>
     @livewireStyles
