@@ -15,19 +15,22 @@ class ShowUsers extends Component
     public $search_query;
     public $render_profiles;
 
-    function mount() {
-        $this-> fetchProfiles();
+    function mount()
+    {
+        $this->fetchProfiles();
         $this->isCreating = true;
         $this->foundProfiles = Profile::where('id', 'LIKE', 0)->get();
     }
 
-    function fetchProfiles() {
-        $this-> profiles = Profile::all()->reverse();
-        $this-> render_profiles = $this-> profiles;
+    function fetchProfiles()
+    {
+        $this->profiles = Profile::all()->reverse();
+        $this->render_profiles = $this->profiles;
     }
 
-    function addProfile() {
-        if($this->name != '' && $this->last_name != '') {
+    function addProfile()
+    {
+        if ($this->name != '' && $this->last_name != '') {
             $profile = new Profile();
             $profile->name = $this->name;
             $profile->last_name = $this->last_name;
@@ -38,14 +41,16 @@ class ShowUsers extends Component
         }
     }
 
-    function searchUser() {
-        $this->foundProfiles = Profile::where('name', 'LIKE', '%'.$this->search_query.'%')->get();
+    function searchUser()
+    {
+        $this->foundProfiles = Profile::where('name', 'LIKE', '%' . $this->search_query . '%')->orWhere('last_name', 'LIKE', '%' . $this->search_query . '%')->get();
     }
 
-    function toggleIsCreating($value) {
+    function toggleIsCreating($value)
+    {
         $this->isCreating = $value;
-        if($value) {
-            $this->render_profiles = $this->profiles; 
+        if ($value) {
+            $this->render_profiles = $this->profiles;
         } else {
             $this->render_profiles = $this->foundProfiles;
         }

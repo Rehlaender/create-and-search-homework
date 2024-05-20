@@ -37,7 +37,7 @@
     @else
         <h2>You are searching for an user</h2>
         <div>
-            <input type="text" wire:model.live="search_query" wire:keydown.enter placeholder="search for..." />
+            <input type="text" wire:model.live="search_query" placeholder="search for..." />
             <button wire:click="searchUser">SEARCH</button>
         </div>
         <br>
